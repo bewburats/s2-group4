@@ -1,4 +1,4 @@
-# NAME PROJECT
+# COLORS PROJECT 
 
 This project is a part of INT203 Client-side Web Programming II Term 2 year of education 2.
 
