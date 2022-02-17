@@ -2,8 +2,7 @@
 import { ref } from 'vue';
 
 let colors = ['red', 'green', 'blue', 'pink', 'yellow', 'black', 'brown', 'orange', 'purple', 'grey', 'gray', 'cyan', 'coral', 'violet',
- 'navy', 'silver', 'skyblue', 'lightblue', 'gold', 'olive', 'aqua', 'aquamarine', 'lime',
-  'beige', 'khaki', 'salmon', 'tan', 'maroon'];
+ 'navy', 'silver', 'skyblue', 'lightblue', 'gold', 'olive', 'aqua', 'aquamarine', 'lime', 'tan', 'maroon', 'beige', 'khaki', 'salmon'];
 const aleartCorrect = ref('');
 const aleartInCorrect = ref('');
 const colorWord = ref('color 🇺🇸');
