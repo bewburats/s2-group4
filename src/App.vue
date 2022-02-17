@@ -10,7 +10,6 @@ const activeColor = ref('');
 const answer = ref('');
 const countTime = ref('');
 const countPoint = ref(0);
-// const inputColor = ref(answer.value);
 const todayColor = ref(colors[getTodayColorIndex()]);
 
 function getTodayColorIndex() {
@@ -34,10 +33,6 @@ function randWebName() {
 
 setInterval(randColorHeadName, 1000)
 setInterval(randWebName, 2000);
-
-// function checkInputColor(){
-//   inputColor.value =`${answer.value}`
-// }
 
 function checkGuessWord() {
   setInterval(setTime, 1000);
