@@ -14,19 +14,19 @@ const countTime = ref('');
 const countPoint = ref(0);
 const todayColor = ref(colors[getTodayColorIndex()]);
 
+// เฉลยของวันนั้นๆ
 function getTodayColorIndex() {
   let days = new Date().getDate();
   let index = days % colors.length;
-  console.log(index);
   return index;
 }
-
+// เปลี่ยนสีคำว่า colors 
 function randColorHeadName() {
-  let colorHead = ['brown', 'pink', 'coral', 'green', 'red']
-  let randColorHead = colorHead[Math.floor(Math.random() * colorHead.length)];
+  // let colorHead = ['brown', 'pink', 'coral', 'green', 'red']
+  let randColorHead = colors[Math.floor(Math.random() * colors.length)];
   colorWordHead.value = randColorHead;
 }
-
+//สุ่มคำว่า color แต่ละภาษาที่จะแสดงหน้าเว็บ
 function randWebName() {
   let nationColor = ['颜 色 🇨🇳', 'colour 🇬🇧', 'color 🇺🇸', 'Farbe 🇩🇪 ', 'Couleur 🇫🇷', 'renk 🇹🇷', 'kleur 🇳🇱'];
   let randColorName = nationColor[Math.floor(Math.random() * nationColor.length)];
@@ -36,32 +36,26 @@ function randWebName() {
 setInterval(randColorHeadName, 1000)
 setInterval(randWebName, 2000);
 
+// เช็คคำตอบ
 function checkGuessWord() {
   setInterval(setTime, 1000);
   if (answer.value === todayColor.value) {
     setTime()
-    activeColor.value = answer.value
-    console.log(todayColor.value);
-    console.log(activeColor.value);
-    console.log(answer.value);
+    activeColor.value = answer.value 
     aleartInCorrect.value = ''
     aleartCorrect.value = 'Your correct , Cool !';
-    console.log("Correct");
   } else {
     setTime()
-    console.log("false");
-    console.log(todayColor.value);
-    console.log(activeColor.value);
-    console.log(answer.value);
     aleartCorrect.value = ''
     aleartInCorrect.value = 'Incorrect ! please try again';
-    activeColor.value = 'white'
+    activeColor.value = ''
   }
 }
 
+//คำนวณเวลาจนถึงเที่ยงคืนของวันนั้นๆ
 function setTime() {
   let crrDate = new Date();
-  let tmrDate = new Date();
+  let tmrDate = new Date(); //1837263
   tmrDate.setHours(24, 0, 0, 0);
   let diffMS = tmrDate.getTime() / 1000 - crrDate.getTime() / 1000;
   let diffHr = Math.floor(diffMS / 3600);
