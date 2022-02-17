@@ -49,6 +49,7 @@ function checkGuessWord() {
     activeColor.value = ''
   }
 }
+
 //คำนวณเวลาจนถึงเที่ยงคืนของวันนั้นๆ
 function setTime() {
   let crrDate = new Date();
