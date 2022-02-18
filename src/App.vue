@@ -14,7 +14,7 @@ const countPoint = ref(100);  /// score
 const todayColor = ref(colors[getTodayColorIndex()]);
 const countIncorrect = ref(0);
 const alertHint = ref('');
-const checkStatus = ref(false);
+const checkStatus = ref(false); 
 
 // เฉลยของวันนั้นๆ
 function getTodayColorIndex() {
@@ -51,6 +51,7 @@ function checkGuessWord() {
     aleartCorrect.value = 'Your correct , Cool !';
     document.getElementById("correct").style.display = "block";
     checkStatus.value = true
+    alertHint.value = ''
   } else {
     setTime()
     aleartCorrect.value = ''
@@ -63,18 +64,9 @@ function checkGuessWord() {
   }
   }
 }
-function reducePoint () {
-    if(countPoint.value>0) {
-      countPoint.value -= 10
-    }
-    
-    if (countPoint.value==0) {
-              
-          document.getElementById("crying").style.display = "block";
-          
-    }
 
-}
+
+
 
 
 //คำนวณเวลาจนถึงเที่ยงคืนของวันนั้นๆ
@@ -98,6 +90,7 @@ function hint(){
   let countLetter = todayColor.value.length
   if (countIncorrect.value >= 3){
     alertHint.value = 'Hint : answer have ' + `${countLetter}` + ' letters.';
+    countPoint.value = 80
   }
 }
 
