@@ -11,6 +11,8 @@ const answer = ref('');
 const countTime = ref('');
 const countPoint = ref(0);
 const todayColor = ref(colors[getTodayColorIndex()]);
+const countIncorrect = ref(0);
+const alertHint = ref('');
 
 // เฉลยของวันนั้นๆ
 function getTodayColorIndex() {
@@ -47,6 +49,8 @@ function checkGuessWord() {
     aleartCorrect.value = ''
     aleartInCorrect.value = 'Incorrect ! please try again';
     activeColor.value = ''
+    countIncorrect.value++
+    hint();
   }
 }
 
@@ -67,6 +71,12 @@ function setTime() {
   countTime.value = `${result}`  
 }
 
+function hint(){
+  let countLetter = todayColor.value.length
+  if (countIncorrect.value >= 3){
+    alertHint.value = 'Hint : answer have ' + `${countLetter}` + ' letters.';
+  }
+}
 
 </script>
  
@@ -114,6 +124,10 @@ function setTime() {
               v-show="aleartInCorrect"
               class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900"
             >{{ aleartInCorrect }}</span>
+            <span
+              v-show="alertHint"
+              class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900"
+            >{{ alertHint }}</span>
             <span
               v-show="aleartCorrect"
               class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900"
