@@ -10,8 +10,9 @@ const colorWordHead = ref('');
 const activeColor = ref('');
 const answer = ref('');
 const countTime = ref('');
-const countPoint = ref(0);
+const countPoint = ref(100);  /// score
 const todayColor = ref(colors[getTodayColorIndex()]);
+const checkStatus = ref(false);
 
 // เฉลยของวันนั้นๆ
 function getTodayColorIndex() {
@@ -37,19 +38,40 @@ setInterval(randWebName, 2000);
 
 // เช็คคำตอบ
 function checkGuessWord() {
+  
+  if(checkStatus.value==false) {
+
   setInterval(setTime, 1000);
   if (answer.value === todayColor.value) {
     setTime()
     activeColor.value = answer.value 
     aleartInCorrect.value = ''
     aleartCorrect.value = 'Your correct , Cool !';
+    document.getElementById("correct").style.display = "block";
+    checkStatus.value = true
   } else {
     setTime()
     aleartCorrect.value = ''
     aleartInCorrect.value = 'Incorrect ! please try again';
     activeColor.value = ''
+    reducePoint ()
+
+  }
   }
 }
+function reducePoint () {
+    if(countPoint.value>0) {
+      countPoint.value -= 10
+    }
+    
+    if (countPoint.value==0) {
+              
+          document.getElementById("crying").style.display = "block";
+          
+    }
+
+}
+
 
 //คำนวณเวลาจนถึงเที่ยงคืนของวันนั้นๆ
 function setTime() {
@@ -72,11 +94,19 @@ function setTime() {
 </script>
  
 <template>
+
+
   <div
     id="back"
     class="min-h-screen bg-gray-50 py-6 flex flex-col justify-center relative overflow-hidden sm:py-12"
     :style="{ 'background-color': activeColor }"
   >
+
+<div class="alert success-alert" id ="correct" style="display:none">
+  <h3>Congratulations, your score is <b> {{countPoint}}</b> today.&#128079;</h3>
+  <a class="close" id ="closeAlert">&times;</a>
+</div>
+
     <div
       class="dark:bg-slate-800 dark:text-white relative px-6 pt-10 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10"
     >
@@ -127,8 +157,8 @@ function setTime() {
               
             </div>
             <div>
-              Total Score:
-              <span class="font-medium bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">{{ countPoint }}</span>
+              Current Point:
+              <span class="font-medium bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">{{ countPoint }}</span>  <span id="crying" style="display:none;">&#128514; You have not scored But you can still answer, fighting !!</span>
             </div>
           </div>
         </div>
@@ -138,4 +168,35 @@ function setTime() {
 </template>
  
 <style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+h3{
+    font-family:Quicksand;
+}
+.alert{
+  width:20%;
+  margin:20px auto;
+  padding:30px;
+  position:relative;
+  border-radius:5px;
+  box-shadow:0 0 15px 5px #ccc;
+  background:#B2FAA7
+
+}
+.close{
+  position:absolute;
+  width:30px;
+  height:30px;
+  opacity:0.5;
+  
+  right:15px;
+  top:25px;
+  text-align:center;
+  font-size:1.6em;
+  cursor:pointer;
+}
 </style>
