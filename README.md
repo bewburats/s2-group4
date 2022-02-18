@@ -13,6 +13,11 @@ This project is a part of INT203 Client-side Web Programming II Term 2 year of e
 | 5.  | 63130500100 | Rawis Noiwong        |
 
 ### ABOUT THE PROJECT
+![HOME](https://github.com/bewburats/s2-group4/blob/main/images/color.png?raw=true)
+![INFO](https://github.com/bewburats/s2-group4/blob/main/images/info.png?raw=true)
+![INPUT](https://github.com/bewburats/s2-group4/blob/main/images/input.png?raw=true)
+![CHECKBOX](https://github.com/bewburats/s2-group4/blob/main/images/checkbox.png?raw=true)
+![SCORE](https://github.com/bewburats/s2-group4/blob/main/images/score.png?raw=true)
 
 
 
