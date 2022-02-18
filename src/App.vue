@@ -94,6 +94,10 @@ function hint(){
   }
 }
 
+function closeAlert () {
+document.getElementById("correct").style.display = "none";
+  
+}
 </script>
  
 <template>
@@ -107,7 +111,7 @@ function hint(){
 
 <div class="alert success-alert" id ="correct" style="display:none">
   <h3>Congratulations, your score is <b> {{countPoint}}</b> today.&#128079;</h3>
-  <a class="close" id ="closeAlert">&times;</a>
+  <a class="close" @click="closeAlert">&times;</a>
 </div>
 
     <div
