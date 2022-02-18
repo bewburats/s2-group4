@@ -2,20 +2,21 @@
 import { ref } from 'vue';
 
 let colors = ['red', 'green', 'blue', 'pink', 'yellow', 'black', 'brown', 'orange', 'purple', 'grey', 'gray', 'cyan', 'coral', 'violet',
- 'navy', 'silver', 'skyblue', 'lightblue', 'gold', 'olive', 'aqua', 'aquamarine', 'lime', 'tan', 'maroon', 'beige', 'khaki', 'salmon'];
-const aleartCorrect = ref('');
-const aleartInCorrect = ref('');
+  'navy', 'silver', 'skyblue', 'lightblue', 'gold', 'olive', 'aqua', 'aquamarine', 'lime', 'tan', 'maroon', 'beige', 'khaki', 'salmon'];
+
 const colorWord = ref('color 🇺🇸');
 const colorWordHead = ref('');
-const activeColor = ref('');
+const bgColor = ref('');
 const answer = ref('');
 const countTime = ref('');
 const countPoint = ref(0);  /// score
 const todayColor = ref(colors[getTodayColorIndex()]);
 const countIncorrect = ref(0);
-const alertHint = ref('');
-const checkStatus = ref(false); 
+const isShowHint = ref(false);
+const isCorrect = ref(false);
+const isCheckedAnswer = ref(false);
 
+console.log(todayColor.value);
 // เฉลยของวันนั้นๆ
 function getTodayColorIndex() {
   let days = new Date().getDate();
@@ -40,35 +41,23 @@ setInterval(randWebName, 2000);
 
 // เช็คคำตอบ
 function checkGuessWord() {
-  
-  if(checkStatus.value==false) {
-
-  setInterval(setTime, 1000);
   if (answer.value === todayColor.value) {
-    setTime()
-    activeColor.value = answer.value 
-    aleartInCorrect.value = ''
-    aleartCorrect.value = 'Your correct , Cool !';
-    document.getElementById("correct").style.display = "block";
-    checkStatus.value = true
-    alertHint.value = ''
-    countPoint.value = 100
+    if (isShowHint.value) {
+      countPoint.value += 80;
+    } else {
+      countPoint.value += 100
+    }
+    bgColor.value = todayColor.value
+    isCorrect.value = true;
+    countIncorrect.value = 0;
   } else {
-    setTime()
-    aleartCorrect.value = ''
-    aleartInCorrect.value = 'Incorrect ! please try again';
-    activeColor.value = ''
+    isCheckedAnswer.value = true;
     countIncorrect.value++
-    hint();
-    reducePoint ()
-
-  }
+    if (countIncorrect.value >= 3) {
+      isShowHint.value = true;
+    }
   }
 }
-
-
-
-
 
 //คำนวณเวลาจนถึงเที่ยงคืนของวันนั้นๆ
 function setTime() {
@@ -84,118 +73,42 @@ function setTime() {
   let result = ((diffHr < 10) ? "0" + diffHr : diffHr);
   result += ":" + ((diffMi < 10) ? "0" + diffMi : diffMi);
   result += ":" + ((diffS < 10) ? "0" + diffS : diffS);
-  countTime.value = `${result}`  
+  countTime.value = `${result}`
 }
+setInterval(setTime, 1000);
 
-function hint(){
-  let countLetter = todayColor.value.length
-  if (countIncorrect.value >= 3){
-    alertHint.value = 'Hint : answer have ' + `${countLetter}` + ' letters.';
-    countPoint.value = 80
-  }
-}
-const showModal = ref(false); //popup
 
-function closeAlert () {
-document.getElementById("correct").style.display = "none";
-  
-}
 </script>
  
 <template>
-
-
   <div
     id="back"
-    class="min-h-screen bg-gray-50 py-6 flex flex-col justify-center relative overflow-hidden sm:py-12"
-    :style="{ 'background-color': activeColor }"
+    class="min-h-screen w-screen w-100 bg-gray-50 py-6 flex flex-col justify-center relative overflow-hidden sm:py-12"
+    :style="{ 'background-color': bgColor }"
   >
-
-<div class="alert success-alert" id ="correct" style="display:none">
-  <h3>Congratulations, your score is <b> {{countPoint}}</b> today.&#128079;</h3>
-  <a class="close" @click="closeAlert">&times;</a>
-</div>
-
     <div
       class="dark:bg-slate-800 dark:text-white relative px-6 pt-10 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10"
     >
-    <div div class="flex justify-end">
-        <button
-          
-          type="button"
-          data-modal-toggle="defaultModal"
-        >
-        
-          <svg 
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            ></path>
-          </svg>
-        </button>
-      </div>
-    <div
-        id="defaultModal"
-        aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0"
-      >
-        <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
-          <!-- Modal content -->
-          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Modal header -->
-            <div
-              class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600"
-            >
-    <h3
-                class="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white"
-              >
-                How To Play!
-              </h3>
-              <button
-                type="button"
-                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                data-modal-toggle="defaultModal"
-              >
-                <svg
-                  class="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-            </div>
-                <!-- Modal body -->
-            <div class="p-6 space-y-6">
-              <p
-                class="text-base leading-relaxed text-gray-500 dark:text-gray-400"
-              >
-                info
-              </p>
-              <p
-                class="text-base leading-relaxed text-gray-500 dark:text-gray-400"
-              >
-                info
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="max-w-md mx-auto">
-        <div class="h-6 font-medium text-xl" :style="{ 'color': colorWordHead }">🎨 C O L O R S</div>
+        <div class="flex justify-between">
+          <div class="h-6 font-medium text-xl" :style="{ 'color': colorWordHead }">🎨 C O L O R S</div>
+          <button type="button" data-modal-toggle="defaultModal">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </button>
+        </div>
 
         <br />
         <hr />
@@ -206,14 +119,17 @@ document.getElementById("correct").style.display = "none";
               <div class="relative z-0 mb-6 w-full group">
                 <input
                   @keyup.enter="checkGuessWord"
+                  @keyup="isCheckedAnswer = false;"
                   v-model="answer"
                   type="text"
                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder="Input Colors" :style="{ 'color': answer }"
+                  placeholder="Input Colors"
+                  :style="{ 'color': answer }"
                   required
+                  :disabled="isCorrect"
                 />
               </div>
-              <div>
+              <div v-show="!isCorrect">
                 <button
                   class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-800"
                 >
@@ -223,69 +139,103 @@ document.getElementById("correct").style.display = "none";
                   >Check it !</span>
                 </button>
               </div>
+              <div
+                v-show="isCorrect"
+                id="toast-success"
+                class="flex items-center text-gray-500 bg-white rounded-lg dark:text-gray-400 dark:bg-gray-800"
+                role="alert"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <i>Correct Answer !</i>
+              </div>
             </div>
 
-            <span
-              v-show="aleartInCorrect"
-              class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900"
-            >{{ aleartInCorrect }}</span>
-            <span
-              v-show="alertHint"
-              class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900"
-            >{{ alertHint }}</span>
-            <span
-              v-show="aleartCorrect"
-              class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900"
-            >{{ aleartCorrect }}</span>
-            <div v-show="countTime">
-              You can guess it every day,see you in
+            <div v-show="isCheckedAnswer">
               <span
-                class="font-medium italic bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900"
-              >{{ countTime }}</span>
-              
+                v-show="!isCorrect"
+                class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900"
+              >Incorrect ! please try again</span>
+              <br />
+              <span
+                v-show="isShowHint"
+                class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900"
+              >Answer Incorrect ! [ Hint : answer have {{ todayColor.length }} letters ]</span>
             </div>
+
+            <div
+              class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+              role="alert"
+              id="correct"
+              v-show="isCorrect"
+            >
+              Congratulations, your score is
+              <b>{{ countPoint }} point</b>
+              <br />You can guess it every day,see you in
+              <span
+                class="font-medium italic bg-green-200 text-green-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900"
+              >{{ countTime }}</span>
+            </div>
+
             <div>
               Current Point:
-              <span class="font-medium bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">{{ countPoint }}</span>  <span id="crying" style="display:none;">&#128514; You have not scored But you can still answer, fighting !!</span>
+              <span
+                class="font-medium bg-blue-100 text-blue-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900"
+              >
+                <b>{{ countPoint }}</b>
+              </span>
+              <span
+                id="crying"
+                style="display:none;"
+              >&#128514; You have not scored But you can still answer, fighting !!</span>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+ 
 </template>
  
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h3 {
+  font-family: Quicksand;
+}
+.alert {
+  width: 20%;
+  margin: 20px auto;
+  padding: 30px;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #ccc;
+  background: #b2faa7;
+}
+.close {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  opacity: 0.5;
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-h3{
-    font-family:Quicksand;
-}
-.alert{
-  width:20%;
-  margin:20px auto;
-  padding:30px;
-  position:relative;
-  border-radius:5px;
-  box-shadow:0 0 15px 5px #ccc;
-  background:#B2FAA7
-
-}
-.close{
-  position:absolute;
-  width:30px;
-  height:30px;
-  opacity:0.5;
-  
-  right:15px;
-  top:25px;
-  text-align:center;
-  font-size:1.6em;
-  cursor:pointer;
+  right: 15px;
+  top: 25px;
+  text-align: center;
+  font-size: 1.6em;
+  cursor: pointer;
 }
 
 #app {
@@ -294,7 +244,7 @@ h3{
   justify-content: center;
   align-items: right;
 
-  width: auto;
+  /* width: auto; */
   min-height: auto;
   overflow-x: hidden;
 }
