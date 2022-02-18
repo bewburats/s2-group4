@@ -10,7 +10,7 @@ const colorWordHead = ref('');
 const activeColor = ref('');
 const answer = ref('');
 const countTime = ref('');
-const countPoint = ref(100);  /// score
+const countPoint = ref(0);  /// score
 const todayColor = ref(colors[getTodayColorIndex()]);
 const countIncorrect = ref(0);
 const alertHint = ref('');
@@ -52,6 +52,7 @@ function checkGuessWord() {
     document.getElementById("correct").style.display = "block";
     checkStatus.value = true
     alertHint.value = ''
+    countPoint.value = 100
   } else {
     setTime()
     aleartCorrect.value = ''
@@ -94,6 +95,11 @@ function hint(){
   }
 }
 const showModal = ref(false); //popup
+
+function closeAlert () {
+document.getElementById("correct").style.display = "none";
+  
+}
 </script>
  
 <template>
@@ -107,7 +113,7 @@ const showModal = ref(false); //popup
 
 <div class="alert success-alert" id ="correct" style="display:none">
   <h3>Congratulations, your score is <b> {{countPoint}}</b> today.&#128079;</h3>
-  <a class="close" id ="closeAlert">&times;</a>
+  <a class="close" @click="closeAlert">&times;</a>
 </div>
 
     <div
