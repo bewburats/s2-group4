@@ -13,14 +13,21 @@ This project is a part of INT203 Client-side Web Programming II Term 2 year of e
 | 5.  | 63130500100 | Rawis Noiwong        |
 
 ### ABOUT THE PROJECT
-![HOME](https://github.com/bewburats/s2-group4/blob/main/images/color.png?raw=true)
+![HOME](https://github.com/bewburats/s2-group4/blob/main/images/home.png?raw=true)
+
+1. Home page
 ![INFO](https://github.com/bewburats/s2-group4/blob/main/images/info.png?raw=true)
+
+2. How to play
 ![INPUT](https://github.com/bewburats/s2-group4/blob/main/images/input.png?raw=true)
+
+3. Guess your color name
 ![CHECKBOX](https://github.com/bewburats/s2-group4/blob/main/images/checkbox.png?raw=true)
+
+4. Check your answer
 ![SCORE](https://github.com/bewburats/s2-group4/blob/main/images/score.png?raw=true)
 
-
-
+5. Your score
 
 ### ABOUT COLORS! :
 COLORS! is a game where you will guess the color name to match the colors that are randomly drawn each day. If you guess correctly, points will be collected but if you guess wrong, points will be deducted.
