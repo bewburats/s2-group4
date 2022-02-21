@@ -13,7 +13,13 @@ This project is a part of INT203 Client-side Web Programming II Term 2 year of e
 | 5.  | 63130500100 | Rawis Noiwong        |
 
 ### ABOUT THE PROJECT
+#### ABOUT COLORS! :
+COLORS! is a game where you will guess the color name to match the colors that are randomly drawn each day. If you guess correctly, points will be collected but if you guess wrong, points will be deducted.
 
+#### HOW TO PLAY COLORS :
+1. Each day we will randomly pick up 1 color, the player must guess the color to match the random color. Players must type their guessed color in the Input Colors box and then press enter or Check it button.
+2. If the player guesses wrong 3 times, there will be a hint. is the number of characters of that color
+3. The system will count the scores when the players guess correctly.
 1. Home page
 
 ![HOME](https://github.com/bewburats/s2-group4/blob/main/images/home.png?raw=true)
@@ -33,12 +39,4 @@ This project is a part of INT203 Client-side Web Programming II Term 2 year of e
 5. Your score
 
 ![SCORE](https://github.com/bewburats/s2-group4/blob/main/images/score.png?raw=true)
-
-### ABOUT COLORS! :
-COLORS! is a game where you will guess the color name to match the colors that are randomly drawn each day. If you guess correctly, points will be collected but if you guess wrong, points will be deducted.
-
-### HOW TO PLAY COLORS :
-1. Each day we will randomly pick up 1 color, the player must guess the color to match the random color. Players must type their guessed color in the Input Colors box and then press enter or Check it button.
-2. If the player guesses wrong 3 times, there will be a hint. is the number of characters of that color
-3. The system will count the scores when the players guess correctly.
 
