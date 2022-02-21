@@ -87,7 +87,7 @@ setInterval(setTime, 1000);
     :style="{ 'background-color': bgColor }"
   >
     <div
-      class="dark:bg-slate-800 dark:text-white relative px-6 pt-10 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10"
+      class="dark:bg-slate-800 dark:text-white md:w-96 md:h-auto relative px-6 pt-10 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10"
     >
       <div class="max-w-md mx-auto">
         <div class="flex justify-between">
@@ -116,7 +116,7 @@ setInterval(setTime, 1000);
           <div class="dark:text-white py-8 text-base leading-7 space-y-6 text-gray-600">
             <p>Guess {{ colorWord }} !</p>
             <div class="grid grid-flow-col auto-cols-max">
-              <div class="relative z-0 mb-6 w-full group">
+              <div class="relative z-0 mb-6 w-full group md:w-auto">
                 <input
                   @keyup.enter="checkGuessWord"
                   @keyup="isCheckedAnswer = false;"
@@ -135,7 +135,7 @@ setInterval(setTime, 1000);
                 >
                   <span
                     @click="checkGuessWord"
-                    class="py-2 relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-slate-800 rounded-md group-hover:bg-opacity-0"
+                    class="px-8 relative px-5 py-2 transition-all ease-in duration-75 bg-white dark:bg-slate-800 rounded-md group-hover:bg-opacity-0"
                   >Check it !</span>
                 </button>
               </div>
