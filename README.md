@@ -20,6 +20,8 @@ COLORS! is a game where you will guess the color name to match the colors that a
 1. Each day we will randomly pick up 1 color, the player must guess the color to match the random color. Players must type their guessed color in the Input Colors box and then press enter or Check it button.
 2. If the player guesses wrong 3 times, there will be a hint. is the number of characters of that color
 3. The system will count the scores when the players guess correctly.
+
+#### ABOUT WEBSITE:
 1. Home page
 
 ![HOME](https://github.com/bewburats/s2-group4/blob/main/images/home.png?raw=true)
