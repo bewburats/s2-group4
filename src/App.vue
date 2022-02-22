@@ -15,6 +15,7 @@ const countIncorrect = ref(0);
 const isShowHint = ref(false);
 const isCorrect = ref(false);
 const isCheckedAnswer = ref(false);
+const isShowAnswer = ref(false);
 
 console.log(todayColor.value);
 // เฉลยของวันนั้นๆ
@@ -31,7 +32,7 @@ function randColorHeadName() {
 }
 //สุ่มคำว่า color แต่ละภาษาที่จะแสดงหน้าเว็บ
 function randWebName() {
-  let nationColor = ['颜 色 🇨🇳', 'colour 🇬🇧', 'color 🇺🇸', 'Farbe 🇩🇪 ', 'Couleur 🇫🇷', 'renk 🇹🇷', 'kleur 🇳🇱'];
+  let nationColor = ['颜 色 🇨🇳', 'colour 🇬🇧', 'color 🇺🇸', 'farbe 🇩🇪 ', 'couleur 🇫🇷', 'renk 🇹🇷', 'kleur 🇳🇱'];
   let randColorName = nationColor[Math.floor(Math.random() * nationColor.length)];
   colorWord.value = randColorName;
 }
@@ -53,7 +54,13 @@ function checkGuessWord() {
   } else {
     isCheckedAnswer.value = true;
     countIncorrect.value++
-    if (countIncorrect.value >= 3) {
+    if (countIncorrect.value >= 5) {
+      // show answer
+      isCheckedAnswer.value = false;
+      isShowHint.value = false;
+      isShowAnswer.value = true;
+    }
+    else if (countIncorrect.value >= 3) {
       isShowHint.value = true;
     }
   }
@@ -125,10 +132,10 @@ setInterval(setTime, 1000);
                   placeholder="Input Colors"
                   :style="{ 'color': answer }"
                   required
-                  :disabled="isCorrect"
+                  :disabled="isCorrect||isShowAnswer"
                 />
               </div>
-              <div v-show="!isCorrect">
+              <div v-show="!isCorrect && !isShowAnswer">
                 <button
                   class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:ring-cyan-200 dark:focus:ring-cyan-800"
                 >
@@ -158,6 +165,26 @@ setInterval(setTime, 1000);
                 </svg>
                 <i>Correct Answer !</i>
               </div>
+              <div
+                v-show="isShowAnswer"
+                id="toast-success"
+                class="flex items-center text-gray-500 bg-white rounded-lg dark:text-gray-400 dark:bg-gray-800"
+                role="alert"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <i>Out of attempt !</i>
+              </div>
             </div>
 
             <div v-show="isCheckedAnswer">
@@ -183,6 +210,23 @@ setInterval(setTime, 1000);
               <br />You can guess it every day,see you in
               <span
                 class="font-medium italic bg-green-200 text-green-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900"
+              >{{ countTime }}</span>
+            </div>
+
+            <div
+              class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+              role="alert"
+              id="correct"
+              v-show="isShowAnswer"
+            >
+            Failure, today color answer is 
+            <span
+                class="font-medium italic bg-red-200 text-red-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900"
+              ><b>{{ todayColor }}</b></span>
+              <br>
+              You can guess it every. day see you in
+              <span
+                class="font-medium italic bg-red-200 text-red-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900"
               >{{ countTime }}</span>
             </div>
 
@@ -242,15 +286,15 @@ setInterval(setTime, 1000);
           </p>
           <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
             <b>🎨 How to play:</b>
-            <br />1. Each day we will randomly pick up 1 color, the player must guess the color to match the random color. Players must type their guessed color in the Input Colors box and then press enter or Check it button.
+            <br />1. Each day we will randomly pick up 1 color, the player must guess the color to match the random color . Players must type their guessed color in the Input Colors box and then press enter or Check it button.
             <br />2. If the player guesses wrong 3 times, there will be a hint. is the number of characters of that color
             <br />3. You will get the scores when guessing correctly.
+            <br /><b>Notice !</b> You can guess it for  5 times . 
           </p>
         </div>
       </div>
     </div>
   </div>
-
 </template>
  
 <style>
