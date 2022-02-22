@@ -21,6 +21,7 @@ COLORS! is a game where you will guess the color name to match the colors that a
 2. If the player guesses wrong 3 times, there will be a hint. is the number of characters of that color
 3. The system will count the scores when the players guess correctly.
 
+**Notice !** The player can guess it for  5 times .
 #### ABOUT WEBSITE:
 1. Home page
 
