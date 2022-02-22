@@ -118,7 +118,6 @@ setInterval(setTime, 1000);
             <div class="grid grid-flow-col auto-cols-max">
               <div class="relative z-0 mb-6 w-full group md:w-auto">
                 <input
-                  @keyup.enter="checkGuessWord"
                   @keyup="isCheckedAnswer = false;"
                   v-model="answer"
                   type="text"
