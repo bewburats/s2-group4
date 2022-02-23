@@ -1,9 +1,13 @@
 <script setup>
 import { ref } from 'vue';
 
-const colors = ['red', 'green', 'blue', 'pink', 'yellow', 'black', 'brown', 'orange', 'purple', 'gray', 'cyan', 'coral', 'violet',
-  'navy', 'silver', 'skyblue', 'gold', 'olive', 'aqua', 'aquamarine', 'lime', 'tan', 'maroon', 'beige', 'khaki', 'salmon',
-  'seagreen', 'royalblue', 'steelblue', 'lavender', 'indigo', 'orchid', 'plum', 'wheat', 'tomato', 'teal'];
+const colors = 
+['red', 'green', 'blue', 'pink', 'yellow', 'black', 
+'tomato', 'seagreen', 'navy', 'gray', 'plum','indigo' ,
+'brown','teal', 'skyblue','silver' , 'gold', 'olive', 
+'maroon', 'aquamarine','steelblue' , 'tan', 'violet', 'beige', 
+'salmon','aqua' ,'royalblue','purple' , 'orange', 'lavender',
+'coral', 'lime', 'cyan', 'wheat','khaki' , 'orchid'];
 
 const colorWord = ref('color 🇺🇸');
 const colorWordHead = ref('');
@@ -246,15 +250,6 @@ setInterval(setTime, 1000);
                 <b>{{ countPoint }}</b>
               </span>
             </div>
-
-            <!-- <div class="grid grid-rows-4 grid-flow-col gap-1 "> 
-              <span v-for="(colors, index) in colors" :key="index">
-                <span
-                  class="border border-500 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 p-2"
-                  :style="{ 'color': 'white', 'border-color': colors, 'background-color': colors, 'text-shadow': '2px 2px 8px black' ,  }"
-                >{{ colors }}</span>
-              </span>
-            </div> -->
           </div>
         </div>
       </div>
@@ -349,14 +344,13 @@ setInterval(setTime, 1000);
             <br />Hint : Your colors show in this !
           </p>
           <!-- <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400"> -->
-            <span class="grid grid-rows-6 grid-flow-col gap-6"> 
-              <span v-for="(colors, index) in colors" :key="index">
-                <span
-                  class="border border-500 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 p-2"
+            <div class="grid grid-rows-6 gap-1 grid-cols-6 break-normal"> 
+              <div v-for="(colors, index) in colors" :key="index"
+                  class="border border-500 rounded-lg text-m px-1 py-2.5 mr-2 mb-2 p-2"
                   :style="{ 'color': 'white', 'border-color': colors, 'background-color': colors, 'text-shadow': '2px 2px 8px black'}"
-                >{{ colors }}</span>
-              </span>
-            </span>
+                >{{ colors }}
+              </div>
+            </div>
           
         </div>
         
