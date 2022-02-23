@@ -345,19 +345,21 @@ setInterval(setTime, 1000);
         <!-- Modal body -->
         <div class="p-6 space-y-6">
           <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-            <b></b>
-            <br />
-                <div class="grid grid-rows-6 grid-flow-col gap-1 "> 
+            <b>🎨 Description:</b>
+            <br />Hint : Your colors show in this !
+          </p>
+          <!-- <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400"> -->
+            <span class="grid grid-rows-6 grid-flow-col gap-6"> 
               <span v-for="(colors, index) in colors" :key="index">
                 <span
                   class="border border-500 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 p-2"
                   :style="{ 'color': 'white', 'border-color': colors, 'background-color': colors, 'text-shadow': '2px 2px 8px black'}"
                 >{{ colors }}</span>
               </span>
-            </div>
-          </p>
-          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400"></p>
+            </span>
+          
         </div>
+        
       </div>
     </div>
   </div>
