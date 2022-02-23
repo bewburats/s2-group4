@@ -47,6 +47,7 @@ setInterval(randWebName, 2000);
 
 // เช็คคำตอบ
 function checkGuessWord() {
+  answer.value=answer.value.toLowerCase()
   if (answer.value === todayColor.value) {
     if (isShowHint.value) {
       countPoint.value += 80;
@@ -88,7 +89,9 @@ function setTime() {
   countTime.value = `${result}`
 }
 setInterval(setTime, 1000);
-
+  
+  // localStorage.getItem("point");
+// localStorage.clear();
 
 </script>
  
@@ -101,6 +104,7 @@ setInterval(setTime, 1000);
     <div
       class="dark:bg-slate-800 dark:text-white md:w-96 md:h-auto relative px-6 pt-10 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10"
     >
+  
       <div class="max-w-md mx-auto">
         <div class="flex justify-between">
           <div class="h-6 font-medium text-xl" :style="{ 'color': colorWordHead }">🎨 C O L O R S</div>
