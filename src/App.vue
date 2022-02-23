@@ -221,12 +221,12 @@ setInterval(setTime, 1000);
             >
             Failure, today color answer is 
             <span
-                class="font-medium italic bg-red-200 text-red-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900"
+                class="font-medium italic bg-red-200 text-red-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900"
               ><b>{{ todayColor }}</b></span>
               <br>
               You can guess it every. day see you in
               <span
-                class="font-medium italic bg-red-200 text-red-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900"
+                class="font-medium italic bg-red-200 text-red-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900"
               >{{ countTime }}</span>
             </div>
 
