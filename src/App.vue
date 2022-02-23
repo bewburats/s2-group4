@@ -2,12 +2,12 @@
 import { ref } from 'vue';
 
 const colors =
-  ['red', 'green', 'blue', 'pink', 'yellow', 'black',
-    'tomato', 'seagreen', 'navy', 'gray', 'plum', 'indigo',
-    'brown', 'teal', 'skyblue', 'silver', 'gold', 'olive',
-    'maroon', 'aquamarine', 'steelblue', 'tan', 'violet', 'beige',
-    'salmon', 'aqua', 'royalblue', 'purple', 'orange', 'lavender',
-    'coral', 'lime', 'cyan', 'wheat', 'khaki', 'orchid'];
+  ['maroon', 'teal', 'blue', 'indigo', 'orange', 'black', 
+'brown', 'green', 'navy', 'purple', 'yellow','gray' ,
+'red','seagreen', 'royalblue','orchid' , 'gold', 'silver', 
+'tomato', 'lime','steelblue' , 'violet', 'olive', 'lavender', 
+'coral','aquamarine' ,'skyblue','plum' , 'khaki', 'tan',
+'salmon', 'aqua', 'cyan', 'pink','beige' , 'wheat',];
 
 const colorWord = ref('color 🇺🇸');
 const colorWordHead = ref('');
