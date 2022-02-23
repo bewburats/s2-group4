@@ -9,6 +9,10 @@ const colors =
 'coral','aquamarine' ,'skyblue','plum' , 'khaki', 'tan',
 'salmon', 'aqua', 'cyan', 'pink','beige' , 'wheat',];
 
+
+
+let totalpoint = ref(0);
+totalpoint.value = localStorage.getItem('point'); 
 const colorWord = ref('color 🇺🇸');
 const colorWordHead = ref('');
 const bgColor = ref('');
@@ -45,14 +49,30 @@ function randWebName() {
 setInterval(randColorHeadName, 1000)
 setInterval(randWebName, 2000);
 
+
+if(localStorage.point==null){
+  localStorage.point = 0
+  totalpoint.value =  localStorage.getItem('point'); 
+}
+
+
+
 // เช็คคำตอบ
 function checkGuessWord() {
   answer.value = answer.value.toLowerCase()
+   
+   
   if (answer.value === todayColor.value) {
     if (isShowHint.value) {
       countPoint.value += 80;
+    
+         localStorage.point = localStorage.point ? +localStorage.point + 80 : 80;
+        
     } else {
       countPoint.value += 100
+   
+       localStorage.point = localStorage.point ? +localStorage.point + 100 : 100;
+     
     }
     bgColor.value = todayColor.value
     isCorrect.value = true;
@@ -70,8 +90,11 @@ function checkGuessWord() {
       isShowHint.value = true;
     }
   }
-  localStorage.setItem("point", countPoint.value);
+  
+    totalpoint.value =  localStorage.getItem('point'); 
+
 }
+
 
 //คำนวณเวลาจนถึงเที่ยงคืนของวันนั้นๆ
 function setTime() {
@@ -91,8 +114,10 @@ function setTime() {
 }
 setInterval(setTime, 1000);
 
-  // localStorage.getItem("point");
-// localStorage.clear();
+
+
+
+
 
 </script>
  
@@ -229,7 +254,7 @@ setInterval(setTime, 1000);
               id="correct"
               v-show="isCorrect"
             >
-              Congratulations, your score is
+              Congratulations, your score today is
               <b>{{ countPoint }} point</b>
               <br />You can guess it every day,see you in
               <span
@@ -260,7 +285,8 @@ setInterval(setTime, 1000);
               <span
                 class="font-medium bg-blue-100 text-blue-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900"
               >
-                <b>{{ countPoint }}</b>
+                
+                <b>{{totalpoint}}</b>
               </span>
             </div>
           </div>
