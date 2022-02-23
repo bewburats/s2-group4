@@ -286,7 +286,7 @@ setInterval(setTime, 1000);
           </p>
           <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
             <b>🎨 How to play:</b>
-            <br />1. Each day we will randomly pick up 1 color, the player must guess the color to match the random color . Players must type their guessed color in the Input Colors box and then press enter or Check it button.
+            <br />1. Each day we will randomly pick up 1 color, the player must guess the color to match the random color . Players must type their guessed color in the Input Colors box and then press Check it button.
             <br />2. If the player guesses wrong 3 times, there will be a hint. is the number of characters of that color
             <br />3. You will get the scores when guessing correctly.
             <br /><b>Notice !</b> You can guess it for  5 times . 
