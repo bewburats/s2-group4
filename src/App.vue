@@ -2,17 +2,15 @@
 import { ref } from 'vue';
 
 const colors =
-  ['maroon', 'teal', 'blue', 'indigo', 'orange', 'black', 
-'brown', 'green', 'navy', 'purple', 'yellow','gray' ,
-'red','seagreen', 'royalblue','orchid' , 'gold', 'silver', 
-'tomato', 'lime','steelblue' , 'violet', 'olive', 'lavender', 
-'coral','aquamarine' ,'skyblue','plum' , 'khaki', 'tan',
-'salmon', 'aqua', 'cyan', 'pink','beige' , 'wheat',];
+  ['maroon', 'teal', 'blue', 'indigo', 'orange', 'black',
+    'brown', 'green', 'navy', 'purple', 'yellow', 'gray',
+    'red', 'seagreen', 'royalblue', 'orchid', 'gold', 'silver',
+    'tomato', 'lime', 'steelblue', 'violet', 'olive', 'lavender',
+    'coral', 'aquamarine', 'skyblue', 'plum', 'khaki', 'tan',
+    'salmon', 'aqua', 'cyan', 'pink', 'beige', 'wheat',];
 
-
-
-let totalpoint = ref(0);
-totalpoint.value = localStorage.getItem('point'); 
+const totalpoint = ref(0);
+totalpoint.value = localStorage.getItem('point');
 const colorWord = ref('color 🇺🇸');
 const colorWordHead = ref('');
 const bgColor = ref('');
@@ -27,12 +25,14 @@ const isCheckedAnswer = ref(false);
 const isShowAnswer = ref(false);
 
 console.log(todayColor.value);
+
 // เฉลยของวันนั้นๆ
 function getTodayColorIndex() {
   let days = new Date().getDate();
   let index = days % colors.length;
   return index;
 }
+
 // เปลี่ยนสีคำว่า colors 
 function randColorHeadName() {
   // let colorHead = ['brown', 'pink', 'coral', 'green', 'red']
@@ -49,30 +49,25 @@ function randWebName() {
 setInterval(randColorHeadName, 1000)
 setInterval(randWebName, 2000);
 
-
-if(localStorage.point==null){
-  localStorage.point = 0
-  totalpoint.value =  localStorage.getItem('point'); 
+//เช็ค localStorage
+checkLocalStorage();
+function checkLocalStorage() {
+  if (!localStorage.point) {
+    localStorage.point = 0
+    totalpoint.value = localStorage.getItem('point');
+  }
 }
-
-
 
 // เช็คคำตอบ
 function checkGuessWord() {
   answer.value = answer.value.toLowerCase()
-   
-   
   if (answer.value === todayColor.value) {
     if (isShowHint.value) {
       countPoint.value += 80;
-    
-         localStorage.point = localStorage.point ? +localStorage.point + 80 : 80;
-        
+      localStorage.point = localStorage.point ? +localStorage.point + 80 : 80;
     } else {
       countPoint.value += 100
-   
-       localStorage.point = localStorage.point ? +localStorage.point + 100 : 100;
-     
+      localStorage.point = localStorage.point ? +localStorage.point + 100 : 100;
     }
     bgColor.value = todayColor.value
     isCorrect.value = true;
@@ -90,11 +85,8 @@ function checkGuessWord() {
       isShowHint.value = true;
     }
   }
-  
-    totalpoint.value =  localStorage.getItem('point'); 
-
+  totalpoint.value = localStorage.getItem('point');
 }
-
 
 //คำนวณเวลาจนถึงเที่ยงคืนของวันนั้นๆ
 function setTime() {
@@ -113,11 +105,6 @@ function setTime() {
   countTime.value = `${result}`
 }
 setInterval(setTime, 1000);
-
-
-
-
-
 
 </script>
  
@@ -254,7 +241,7 @@ setInterval(setTime, 1000);
               id="correct"
               v-show="isCorrect"
             >
-              Congratulations, your score today is
+              Congratulations, score today is
               <b>{{ countPoint }} point</b>
               <br />You can guess it every day,see you in
               <span
@@ -285,8 +272,7 @@ setInterval(setTime, 1000);
               <span
                 class="font-medium bg-blue-100 text-blue-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900"
               >
-                
-                <b>{{totalpoint}}</b>
+                <b>{{ totalpoint }}</b>
               </span>
             </div>
           </div>
@@ -388,7 +374,7 @@ setInterval(setTime, 1000);
               v-for="(colors, index) in colors"
               :key="index"
               class="border border-500 rounded-lg text-m px-1 py-2.5 mr-2 mb-2 p-2"
-              :style="{ 'color': 'white', 'border-color': colors, 'background-color': colors, 'text-shadow': '2px 2px 8px black' }"
+              :style="{ 'color': 'white', 'border-color': colors, 'background-color': colors, 'text-shadow': '2px 2px 8px rgba(128,128,128,0.7)' }"
             >{{ colors }}</div>
           </div>
         </div>
