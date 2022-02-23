@@ -24,7 +24,7 @@ const isCorrect = ref(false);
 const isCheckedAnswer = ref(false);
 const isShowAnswer = ref(false);
 
-console.log(todayColor.value);
+console.log(`Hint : ${todayColor.value}`);
 
 // เฉลยของวันนั้นๆ
 function getTodayColorIndex() {
@@ -366,14 +366,14 @@ setInterval(setTime, 1000);
         <div class="p-6 space-y-6">
           <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
             <b>🎨 Description:</b>
-            <br />Hint : Your colors show in this !
+            <br />Hint :your answer are in this !
           </p>
           <!-- <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400"> -->
           <div class="grid grid-rows-6 gap-1 grid-cols-6 break-normal">
             <div
               v-for="(colors, index) in colors"
               :key="index"
-              class="border border-500 rounded-lg text-m px-1 py-2.5 mr-2 mb-2 p-2"
+              class="border border-500 rounded-lg text-sm px-1 py-2.5 mr-2 mb-2 p-2"
               :style="{ 'color': 'white', 'border-color': colors, 'background-color': colors, 'text-shadow': '2px 2px 8px rgba(128,128,128,0.7)' }"
             >{{ colors }}</div>
           </div>
