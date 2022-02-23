@@ -54,7 +54,7 @@ function checkGuessWord() {
   } else {
     isCheckedAnswer.value = true;
     countIncorrect.value++
-    if (countIncorrect.value >= 5) {
+    if (countIncorrect.value >= 6) {
       // show answer
       isCheckedAnswer.value = false;
       isShowHint.value = false;
