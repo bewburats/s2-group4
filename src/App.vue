@@ -72,6 +72,7 @@ function checkGuessWord() {
     bgColor.value = todayColor.value
     isCorrect.value = true;
     countIncorrect.value = 0;
+    setLastPlay();
   } else {
     isCheckedAnswer.value = true;
     countIncorrect.value++
@@ -80,6 +81,7 @@ function checkGuessWord() {
       isCheckedAnswer.value = false;
       isShowHint.value = false;
       isShowAnswer.value = true;
+      setLastPlay();
     }
     else if (countIncorrect.value >= 3) {
       isShowHint.value = true;
@@ -106,6 +108,45 @@ function setTime() {
 }
 setInterval(setTime, 1000);
 
+let isPlayedToday = ref(false);
+
+function checkIsPlayedToday() {
+  let lastPlay = localStorage.getItem('lastplayDate');
+  if (lastPlay) {
+    let objDate = new Date(lastPlay);
+    let todayDate = new Date();
+    if ((objDate.getDate() < todayDate.getDate()) && (objDate.getMonth() <= todayDate.getMonth()) && (objDate.getFullYear() <= todayDate.getFullYear())) {
+      console.log('not played');
+      isPlayedToday.value = false;
+    } else {
+      console.log('played');
+      isPlayedToday.value = true;
+      let lastPlayStatus = JSON.parse(localStorage.getItem('lastplayStatus')) || false;
+      // if true = you correct in last play
+      if (lastPlayStatus) {
+        answer.value = todayColor.value;
+        bgColor.value = todayColor.value
+        isCorrect.value = true;
+        countPoint.value = localStorage.getItem('lastplayPoint') || 0;
+    
+      } else {
+        isCheckedAnswer.value = false;
+        isShowHint.value = false;
+        isShowAnswer.value = true;
+      }
+    }
+  }
+  else {
+    console.log('not played');
+    isPlayedToday.value = false;
+  }
+}
+checkIsPlayedToday();
+function setLastPlay() {
+  localStorage.setItem('lastplayDate', new Date().toLocaleDateString());
+  localStorage.setItem('lastplayStatus', isCorrect.value);
+  localStorage.setItem('lastplayPoint', countPoint.value)
+}
 </script>
  
 <template>
