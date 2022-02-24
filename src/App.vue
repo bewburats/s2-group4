@@ -60,7 +60,7 @@ function checkLocalStorage() {
 
 // เช็คคำตอบ
 function checkGuessWord() {
-  answer.value = answer.value.toLowerCase()
+  answer.value = answer.value.toLowerCase().trim('')
   if (answer.value === todayColor.value) {
     if (isShowHint.value) {
       countPoint.value += 80;
