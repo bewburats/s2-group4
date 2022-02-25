@@ -27,19 +27,23 @@ COLORS! is a game where you will guess the color name to match the colors that a
 
 ![HOME](https://github.com/bewburats/s2-group4/blob/main/images/home.png?raw=true)
 
-2. How to play
+2. List of colors
+
+![COLOR](https://github.com/bewburats/s2-group4/blob/main/images/color.png?raw=true)
+
+3. How to play
 
 ![INFO](https://github.com/bewburats/s2-group4/blob/main/images/info.png?raw=true)
 
-3. Guess your color name
+4. Guess your color name
 
 ![INPUT](https://github.com/bewburats/s2-group4/blob/main/images/input.png?raw=true)
 
-4. Check your answer
+5. Check your answer
 
 ![CHECKBOX](https://github.com/bewburats/s2-group4/blob/main/images/checkbox.png?raw=true)
 
-5. Your score
+6. Your score
 
 ![SCORE](https://github.com/bewburats/s2-group4/blob/main/images/score.png?raw=true)
 
