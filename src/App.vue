@@ -354,15 +354,16 @@ function setLastPlay() {
         </div>
         <!-- Modal body -->
         <div class="p-6 space-y-6">
-          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          <p class="text-base leading-relaxed text-gray-500 dark:text-white">
             <b>🎨 Description:</b>
             <br />Guess the COLORS ! . If you are correct you got a point if not point will deduct.
           </p>
-          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          <p class="text-base leading-relaxed text-gray-500 dark:text-white">
             <b>🎨 How to play:</b>
             <br />1. Each day we will randomly pick up 1 color, the player must guess the color to match the random color . Players must type their guessed color in the Input Colors box and then press Check it button.
             <br />2. If the player guesses wrong 3 times, there will be a hint. is the number of characters of that color
             <br />3. You will get the scores when guessing correctly.
+            <br />
             <br />
             <b>Notice !</b> You can guess it for 5 times .
           </p>
@@ -405,7 +406,7 @@ function setLastPlay() {
         </div>
         <!-- Modal body -->
         <div class="p-6 space-y-6">
-          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          <p class="text-base leading-relaxed text-gray-500 dark:text-white">
             <b>🎨 Description:</b>
             <br />Hint :your answer are in this !
           </p>
